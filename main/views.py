@@ -25,4 +25,6 @@ class ProductDetail(DetailView):
 
     def get(self, request, id):
         det = Product.objects.get(pk=id)
-        return render(request, self.template_name, {'det':det})
+        brend = Brend.objects.all()
+        cat = Category.objects.filter(parent=None)
+        return render(request, self.template_name, {'det': det, 'brend': brend,'cat': cat})
