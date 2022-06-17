@@ -21,7 +21,7 @@
                             {% for sub in item.child.all %}
                             {% if not sub.child.all %}
                             <li>
-                                <a href=""> {{ sub.title }} </a>
+                                <a href="{% url 'category' sub.slug %}"> {{ sub.title }} </a>
                             </li>
                             {% endif %}
                             {% endfor %}
@@ -46,7 +46,7 @@
             <div class="brands-name">
                 <ul class="nav nav-pills nav-stacked">
                     {% for bren in brend %}
-                    <li><a href="#"> <span class="pull-right">({{bren.brends|length}})</span>{{ bren.title }}</a></li>
+                    <li><a href=""> <span class="pull-right">({{bren.brends|length}})</span>{{ bren.title }}</a></li>
                     {% endfor %}
                 </ul>
             </div>

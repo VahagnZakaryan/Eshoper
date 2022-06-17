@@ -47,3 +47,16 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'Product'
         verbose_name_plural = 'Products'
+
+class Slider(models.Model):
+    title = models.CharField('slider title', max_length=100)
+    slogan = models.TextField('slogan')
+    comment = models.TextField('comment')
+    img = models.ImageField(upload_to='media')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Slider'
+        verbose_name_plural = 'Sliders'
