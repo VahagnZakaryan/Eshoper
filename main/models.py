@@ -52,6 +52,19 @@ class Slider(models.Model):
         verbose_name_plural = 'Sliders'
 
 
+class SupterSlider(models.Model):
+    title = models.CharField('slider title', max_length=100)
+    slogan = models.TextField('slogan')
+    comment = models.TextField('comment')
+    img = models.ImageField(upload_to='media')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Super slider (only one)'
+
+
 class Blog(models.Model):
     title = models.CharField('Blog title', max_length=100)
     author = models.CharField('Auther name', max_length=100)
@@ -65,3 +78,20 @@ class Blog(models.Model):
     class Meta:
         verbose_name = 'Blog'
         verbose_name_plural = 'Blogs'
+
+
+class Contacts(models.Model):
+    company_name = models.CharField('company name', max_length=100)
+    location = models.TextField('campny location')
+    city = models.CharField('City name', max_length=100)
+    number_nuber = models.CharField('phone number', max_length=100)
+    email = models.CharField('email adres', max_length=100)
+
+    def get(self):
+        return self.company_name
+
+    class Meta:
+        verbose_name = 'contac'
+        verbose_name_plural = 'contacts'
+
+
