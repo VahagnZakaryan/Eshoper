@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -49,7 +49,7 @@ class Slider(models.Model):
 
     class Meta:
         verbose_name = 'Slider'
-        verbose_name_plural = 'Sliders'
+        verbose_name_plural ='Sliders'
 
 
 class SupterSlider(models.Model):
@@ -79,7 +79,6 @@ class Blog(models.Model):
         verbose_name = 'Blog'
         verbose_name_plural = 'Blogs'
 
-
 class Contacts(models.Model):
     company_name = models.CharField('company name', max_length=100)
     location = models.TextField('campny location')
@@ -94,4 +93,15 @@ class Contacts(models.Model):
         verbose_name = 'contac'
         verbose_name_plural = 'contacts'
 
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    prod = models.ForeignKey(Product, on_delete=models.CASCADE)
+    post_time = models.DateTimeField(auto_now_add=True)
+    com = models.TextField()
 
+    def get(self):
+        return self.prod
+    
+    class Meta:
+        verbose_name = 'Comment'
+        verbose_name_plural = 'Comments'

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import IndexList, ProductDetail, CategoryList, ProductList, BlogList, BlogDetail, register_request, login_request, logout_request
+from .views import *
 
 urlpatterns = [
     path('', IndexList.as_view(), name='home'),
@@ -11,4 +11,6 @@ urlpatterns = [
     path("register", register_request, name='register'),
     path("login", login_request, name='login'),
     path("logout", logout_request, name='logout'),
+    path("add_comment", CreateView.as_view(), name = 'comment'),
 ]
+

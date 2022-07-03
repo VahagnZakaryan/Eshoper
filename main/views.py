@@ -1,11 +1,15 @@
-import requests
+from pipes import Template
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, TemplateView
+from django.views.generic.edit import FormView
 from .models import *
-from .forms import NewUserForm
+from .forms import NewUserForm, CommentForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
+
+
 # Create your views here.
 
 def register_request(request):
@@ -134,3 +138,31 @@ class ContactsList(ListView):
         cont = Contacts.objects.all()
         return render(reqest, self.template_name, {'cont': cont})
 
+
+# class CommentView(TemplateView):
+#     template_name = 'main/product_detail.html'
+
+#     def get(self, request):
+#         comment = CommentForm()
+#         comments = Comment.objects.all()
+#         args = {'comment' : comment, 'comments': comments}
+#         return render(request, self.template_name, args)
+    
+#     def post(self, request):
+#         comment = CommentForm(request.POST)
+#         if comment.is_valid():
+#             comment = comment.save(commit = False)
+#             comment.user = request.user
+#             comment.save()
+
+#             text = comment.cleaned_data['post']
+#             comment = CommentForm()
+#             return redirect('main/product_detail.html')
+    
+#         args = {'comment': comment, 'text': text}
+#         return render(request, self.template_name, args)
+
+class CommentView(FormView):
+    template_name = 'main/product_detail.html'
+    form_class = CommentForm
+    success_url = 'main/product_detail.html'
